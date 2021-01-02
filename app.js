@@ -23,8 +23,8 @@ const downloadAndSend = async () => {
 
 	imgUrl = "http://www.bom.gov.au" + $('img[title="128 km Melbourne Radar"]').attr("src");
 
-	await exec("cd imgs && rm img.gif");
-	await exec(`cd imgs && curl ${imgUrl} --output img.gif`);
+	exec("cd imgs && rm img.gif");
+	exec(`cd imgs && curl ${imgUrl} --output img.gif`);
 };
 
 client.on("ready", async () => {
