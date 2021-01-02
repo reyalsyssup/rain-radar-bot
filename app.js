@@ -19,19 +19,22 @@ const downloadAndSend = async () => {
 		.get("http://www.bom.gov.au/products/IDR023.shtml#skip")
 		.then((res) => (rainData = res.data));
 
-	rainData === null ? console.log("Error retrieving rain data") : ($ = cheerio.load(rainData));
+	rainData === null
+		? console.log("Error retrieving rain radar image url")
+		: ($ = cheerio.load(rainData));
 
 	imgUrl = "http://www.bom.gov.au" + $('img[title="128 km Melbourne Radar"]').attr("src");
 
 	exec("cd imgs && rm img.gif");
 	exec(`cd imgs && curl ${imgUrl} --output img.gif`);
+
+	myAccount.send("Weather data:", { files: [__dirname + "/imgs/img.gif"] });
 };
 
 client.on("ready", async () => {
 	console.log("ready");
 	myAccount = await client.users.fetch(process.env.USERID);
 	canRun = true;
-	await downloadAndSend();
 });
 
 setInterval(async () => {
@@ -41,9 +44,9 @@ setInterval(async () => {
 		let second = new Date().getSeconds();
 
 		if (hour >= 8 && hour <= 20 && minute == 0 && second == 0) {
-			myAccount.send("Rain data:");
+			await downloadAndSend();
 		}
 	}
-}, 100);
+}, 1000);
 
 client.login(process.env.TOKEN);
