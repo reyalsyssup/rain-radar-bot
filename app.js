@@ -26,7 +26,6 @@ const downloadAndSend = async () => {
 	imgUrl = "http://www.bom.gov.au" + $('img[title="128 km Melbourne Radar"]').attr("src");
 
 	exec("mkdir imgs");
-	exec("cd imgs && rm img.gif");
 	exec(`cd imgs && curl ${imgUrl} --output img.gif`);
 
 	myAccount.send("Weather data:", { files: [__dirname + "/imgs/img.gif"] });
