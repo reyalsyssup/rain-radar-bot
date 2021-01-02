@@ -1,0 +1,20 @@
+{
+  "name": "rain-notifier",
+  "version": "1.0.0",
+  "description": "This app is a discord bot that will send me an image of the rain radar on http://www.bom.gov.au/ every hour. Simple as that.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
+    "discord.js": "^12.5.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
