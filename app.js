@@ -1,12 +1,12 @@
 const { default: axios } = require("axios");
 
 const cheerio = require("cheerio"),
-	dotEnv = require("dotenv"),
+	// dotEnv = require("dotenv"),
 	Discord = require("discord.js"),
 	{ exec } = require("child_process"),
 	client = new Discord.Client();
 
-dotEnv.config();
+// dotEnv.config();
 let myAccount = null;
 let canRun = false;
 let $ = null;
