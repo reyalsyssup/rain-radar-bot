@@ -37,6 +37,10 @@ client.on("ready", async () => {
 	canRun = true;
 });
 
+client.on("message", async (msg) => {
+	if (!msg.author.bot && msg.content === "map") await downloadAndSend();
+});
+
 setInterval(async () => {
 	if (canRun) {
 		let hour = new Date().getHours();
